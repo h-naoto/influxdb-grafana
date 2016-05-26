@@ -4,17 +4,25 @@ services:
     image: influxdb:0.12
     hostname: influxdb
     ports:
-     - "8083:8083"
-     - "8086:8086"
-    privileged: true
+      - "8083:8083"
+      - "8086:8086"
 
   grafana:
     image: grafana/grafana
     hostname: influxdb
     ports:
-     - "3000:3000"
-    privileged: true
+      - "3000:3000"
     links:
-     - influxdb
+      - influxdb
+    depends_on:
+      - influxdb
+      
+  collector:
+    build:
+      context: ./collector
+      dockerfile: Dockerfile
+    hostname: collector
+    links:
+      - influxdb
     depends_on:
       - influxdb
