@@ -1,0 +1,20 @@
+version: '2'
+services:
+  influxdb:
+    image: influxdb:0.12
+    hostname: influxdb
+    ports:
+     - "8083:8083"
+     - "8086:8086"
+    privileged: true
+
+  grafana:
+    image: grafana/grafana
+    hostname: influxdb
+    ports:
+     - "3000:3000"
+    privileged: true
+    links:
+     - influxdb
+    depends_on:
+      - influxdb
