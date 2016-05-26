@@ -41,7 +41,7 @@ def create_db(client, name):
 
 def create_pol(client):
     print("Create a retention policy")
-    client.create_retention_policy('awesome_policy', '3d', 1, default=True)
+    client.create_retention_policy('my_policy', '3d', 1, default=True)
 
 
 def write_point(client):
@@ -51,7 +51,7 @@ def write_point(client):
 
 
 def main():
-    host = '192.168.56.101'
+    host = 'influxdb'
     port = '8086'
     user = 'root'
     password = 'root'
